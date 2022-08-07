@@ -4,22 +4,23 @@ import SearchBox from "./SearchBox";
 import { useSelector } from "react-redux";
 
 const SearchForm = () => {
-  const { contactList, keyword } = useSelector((state) => state);
+  const { contact, keyword } = useSelector((state) => state);
   let [filterList, setFilterList] = useState([]);
 
+  console.log(contact);
   useEffect(() => {
-    if (keyword !== "") {
-      let list = contactList.filter((item) => item.name.includes(keyword));
-      setFilterList(list);
+    if (keyword == "") {
+      setFilterList(contact);
     } else {
-      setFilterList(contactList);
+      let list = contact.filter((item) => item.name.includes(keyword));
+      setFilterList(list);
     }
   }, [keyword]);
 
   return (
     <div>
       <SearchBox />
-      <p className="total">num : {filterList?.length}</p>
+      <p className="total">num : {filterList.length}</p>
       <div>
         {filterList?.map((item) => (
           <ContactCard item={item} />

@@ -1,28 +1,22 @@
-let initialState = {
-  contactList: [],
+const initialState = {
+  contact: [],
   keyword: "",
 };
-
-function reducer(state = initialState, action) {
-  const { type, payload } = action; //action. 안해줘도 됨
+const contactReducer = (state = initialState, action) => {
+  let { type, payload } = action;
   switch (type) {
     case "ADD_CONTACT":
-      return {
-        ...state,
-        contactList: [
-          ...state.contactList,
-          {
-            name: payload.name,
-            phoneNumber: payload.phoneNumber,
-          },
-        ],
-      };
+      state.contact.push({
+        name: payload.name,
+        phoneNumber: payload.phoneNumber,
+      });
+      break;
     case "SEARCH_NAME":
       state.keyword = payload.keyword;
       break;
-    default:
-      return { ...state };
   }
-}
 
-export default reducer;
+  return { ...state };
+};
+
+export default contactReducer;
