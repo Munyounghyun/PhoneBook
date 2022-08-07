@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 const SearchBox = () => {
   let [keyword, setKeyword] = useState("");
   let dispatch = useDispatch();
-  let { contact } = useSelector((state) => state);
   const searchName = (event) => {
     event.preventDefault();
     dispatch({

@@ -20,7 +20,11 @@ const SearchForm = () => {
   return (
     <div>
       <SearchBox />
-      <p className="total">num : {filterList.length}</p>
+      {filterList?.length !== 0 ? (
+        <p className="total">num : {filterList.length}</p>
+      ) : (
+        ""
+      )}
       <div>
         {filterList?.map((item) => (
           <ContactCard item={item} />
